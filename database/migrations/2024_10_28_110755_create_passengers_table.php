@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('passengers', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 10);
+            $table->string('lastname', 10);
+            $table->tinyInteger('age');
+            $table->tinyInteger('passenger_code');
             $table->timestamps();
         });
     }
