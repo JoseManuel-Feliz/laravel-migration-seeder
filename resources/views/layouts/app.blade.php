@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @yield('cdn','')
-    <title>@yield('page-tile','')</title>
+    <title>@yield('page-title','')</title>
 </head>
 
 <body>

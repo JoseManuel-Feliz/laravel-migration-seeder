@@ -10,7 +10,6 @@ class PassengerController extends Controller
     public function index()
     {
         $passengers = Passenger::all();
-        dd($passengers);
         return view('passengers.index', compact('passengers'));
     }
 }
