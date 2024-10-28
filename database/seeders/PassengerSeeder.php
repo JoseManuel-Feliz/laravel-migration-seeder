@@ -15,11 +15,12 @@ class PassengerSeeder extends Seeder
     {
         $passengers = [
             [
-                'name' => 'jose',
-                'lastname' => 'feliz',
-                'age' => 25,
+                'name' => 'pippo',
+                'lastname' => 'pluto',
+                'age' => 53,
                 'passenger_code' => 345354,
             ],
+
         ];
 
         foreach ($passengers as $passenger) {
