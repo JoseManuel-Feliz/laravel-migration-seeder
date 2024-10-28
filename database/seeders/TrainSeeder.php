@@ -238,19 +238,20 @@ class TrainSeeder extends Seeder
 
         foreach ($trains as $train) {
 
-            $newTrain = new Train();
-
-            $newTrain = new Train();
-            $newTrain->azienda = $train['azienda'];
-            $newTrain->stazione_partenza = $train['stazione_partenza'];
-            $newTrain->stazione_arrivo = $train['stazione_arrivo'];
-            $newTrain->orario_partenza = $train['orario_partenza'];
+            /*  
+           $newTrain = new Train();
+           $newTrain->azienda = $train['azienda'];
+           $newTrain->stazione_partenza = $train['stazione_partenza'];
+           $newTrain->stazione_arrivo = $train['stazione_arrivo'];
+           $newTrain->orario_partenza = $train['orario_partenza'];
             $newTrain->orario_arrivo = $train['orario_arrivo'];
             $newTrain->codice_treno = $train['codice_treno'];
             $newTrain->numero_carrozze = $train['numero_carrozze'];
             $newTrain->in_orario = $train['in_orario'];
             $newTrain->cancellato = $train['cancellato'];
-            $newTrain->save();
+            $newTrain->save(); */
+
+            $newTrain = Train::create($train);
         }
     }
 }
