@@ -5,15 +5,16 @@ namespace Database\Seeders;
 use App\Models\Train;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class TrainSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Faker $faker): void
     {
-        $trains = [
+        /*  $trains = [
             [
                 "azienda" => "Trenitalia",
                 "stazione_partenza" => "Roma Termini",
@@ -234,24 +235,39 @@ class TrainSeeder extends Seeder
                 "in_orario" => false,
                 "cancellato" => false
             ]
-        ];
+        ]; */
 
-        foreach ($trains as $train) {
 
-            /*  
-           $newTrain = new Train();
-           $newTrain->azienda = $train['azienda'];
-           $newTrain->stazione_partenza = $train['stazione_partenza'];
-           $newTrain->stazione_arrivo = $train['stazione_arrivo'];
-           $newTrain->orario_partenza = $train['orario_partenza'];
-            $newTrain->orario_arrivo = $train['orario_arrivo'];
-            $newTrain->codice_treno = $train['codice_treno'];
-            $newTrain->numero_carrozze = $train['numero_carrozze'];
-            $newTrain->in_orario = $train['in_orario'];
-            $newTrain->cancellato = $train['cancellato'];
-            $newTrain->save(); */
+        /*  
+        $newTrain = new Train();
+        $newTrain->azienda = $faker['azienda'];
+        $newTrain->stazione_partenza = $faker['stazione_partenza'];
+        $newTrain->stazione_arrivo = $faker['stazione_arrivo'];
+        $newTrain->orario_partenza = $faker['orario_partenza'];
+        $newTrain->orario_arrivo = $faker['orario_arrivo'];
+            $newTrain->codice_treno = $faker['codice_treno'];
+            $newTrain->numero_carrozze = $faker['numero_carrozze'];
+            $newTrain->in_orario = $faker['in_orario'];
+            $newTrain->cancellato = $faker['cancellato'];
+            $newTrain->save(); 
+            
+            /*  foreach ($fakers as $faker) {
+            $newTrain = Train::create($faker); 
+        }
+            */
+        for ($i = 0; $i < 40; $i++) {
 
-            $newTrain = Train::create($train);
+            $newTrain = new Train();
+            $newTrain->azienda = $faker->company();
+            $newTrain->stazione_partenza = $faker->city();
+            $newTrain->stazione_arrivo = $faker->city;
+            $newTrain->orario_partenza = $faker->dateTime($max = 'now');
+            $newTrain->orario_arrivo = $faker->dateTime($max = 'now');
+            $newTrain->codice_treno = $faker->unique()->randomNumber(5, true);
+            $newTrain->numero_carrozze = $faker->numberBetween(1, 12);
+            $newTrain->in_orario = $faker->boolean();
+            $newTrain->cancellato = $faker->boolean();
+            $newTrain->save();
         }
     }
 }
