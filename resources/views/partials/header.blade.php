@@ -1,5 +1,4 @@
 <header>
 
-    <div>header goes here</div>
-
+    <h1> @yield('title','')</h1>
 </header>

@@ -1,106 +1,61 @@
 @extends('layouts.app')
 
+@section('title','Trains Timetable')
+
 
 @section('main-content')
 
-<!-- "id" => 41
-"azienda" => "Trenitalia"
-"stazione_partenza" => "Roma Termini"
-"stazione_arrivo" => "Milano Centrale"
-"orario_partenza" => "2024-10-25 06:30:00"
-"orario_arrivo" => "2024-10-25 10:45:00"
-"codice_treno" => "IC001"
-"numero_carrozze" => 12
-"in_orario" => 1
-"cancellato" => 0 -->
 <main>
 
-    <table>
+    <div class="container">
 
-        <thead>
-            <tr>
-                <th>
-                    id
-                </th>
-                <th>
-                    Azienda
-                </th>
-                <th>
-                    stazione di partenza
-                </th>
-                <th>
-                    stazione di arrivo
-                </th>
-                <th>
-                    orario di partenza
-                </th>
-                <th>
-                    orario di arrivo
-                </th>
-                <th>
-                    codice treno
-                </th>
-                <th>
-                    numero carrozze
-                </th>
-                <th>
-                    in orario
-                </th>
-                <th>
-                    cancellato
-                </th>
+        <table class="trains-table">
 
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($trains as $train)
-            <tr>
-                <td>
-                    {{$train->id}}
-                </td>
-                <td>
-                    {{$train->azienda}}
-                </td>
-                <td>
-                    {{$train->stazione_partenza}}
-                </td>
-                <td>
-                    {{$train->stazione_arrivo}}
-                </td>
-                <td>
-                    {{$train->orario_partenza}}
-                </td>
-                <td>
-                    {{$train->orario_arrivo}}
-                </td>
-                <td>
-                    {{$train->codice_treno}}
-                </td>
-                <td>
-                    {{$train->numero_carrozze}}
-                </td>
-                <td>
-                    {{$train->in_orario}}
-                </td>
-                <td>
-                    {{$train->cancellato}}
-                </td>
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Company </th>
+                    <th> Departure station </th>
+                    <th> Arrival station </th>
+                    <th> Departure time </th>
+                    <th> Arrival time </th>
+                    <th> Train code </th>
+                    <th> number of carriages </th>
+                    <th> On time </th>
+                    <th> Canceled </th>
+                </tr>
+            </thead>
 
+            <tbody>
+                @forelse($trains as $train)
+                <tr>
+                    <td> {{$train->id}} </td>
+                    <td> {{$train->azienda}}</td>
+                    <td> {{$train->stazione_partenza}} </td>
+                    <td> {{$train->stazione_arrivo}} </td>
+                    <td> {{$train->orario_partenza}} </td>
+                    <td> {{$train->orario_arrivo}} </td>
+                    <td> {{$train->codice_treno}} </td>
+                    <td> {{$train->numero_carrozze}} </td>
 
-            </tr>
-            @empty
-            <tr>
+                    @if($train->cancellato)
+                    <td> {{$train->in_orario ? 'On time' : 'Delay'}} </td>
+                    <td> {{$train->cancellato ? '/ / /' : 'Cancelled' }} </td>
 
-                <td rowspan="11">
-                    no trains available
-                </td>
-            </tr>
-            @endforelse
-        </tbody>
+                    @else
+                    <td colspan="2"> Cancelled </td>
+                    @endif
+                </tr>
+                @empty
+                <tr>
+                    <td colpan="11"> no trains available </td>
+                </tr>
+                @endforelse
+            </tbody>
 
+        </table>
+    </div>
 
-
-    </table>
 </main>
 
 
