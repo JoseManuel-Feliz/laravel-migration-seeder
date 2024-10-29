@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Train;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
+use Faker\Factory as Faker;
 
 class TrainSeeder extends Seeder
 {
@@ -255,15 +255,17 @@ class TrainSeeder extends Seeder
             $newTrain = Train::create($faker); 
         }
             */
+
+        $faker = Faker::create('it_IT');
         for ($i = 0; $i < 40; $i++) {
 
             $newTrain = new Train();
             $newTrain->azienda = $faker->company();
-            $newTrain->stazione_partenza = $faker->city();
-            $newTrain->stazione_arrivo = $faker->city;
-            $newTrain->orario_partenza = $faker->dateTime($max = 'now');
-            $newTrain->orario_arrivo = $faker->dateTime($max = 'now');
-            $newTrain->codice_treno = $faker->unique()->randomNumber(5, true);
+            $newTrain->stazione_partenza = $faker->city() . ', ' . $faker->stateAbbr();
+            $newTrain->stazione_arrivo = $faker->city . ', ' . $faker->stateAbbr();
+            $newTrain->orario_partenza = $faker->dateTimeBetween('now', '+3 days');
+            $newTrain->orario_arrivo = $faker->dateTimeBetween('now', '3days');
+            $newTrain->codice_treno = $faker->unique()->regexify('[A-Z]{1}[0-4]{3}[A-Z]{2}');
             $newTrain->numero_carrozze = $faker->numberBetween(1, 12);
             $newTrain->in_orario = $faker->boolean();
             $newTrain->cancellato = $faker->boolean();
